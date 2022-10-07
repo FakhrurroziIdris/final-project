@@ -1,0 +1,37 @@
+<meta http-equiv="refresh" content="{{.PageRefresh}}" />
+<html>
+    <head>
+        <title>HTML</title>
+    </head>
+    <body>
+        <div>
+            <h4>Page will be refreshed 5 second</h4>
+            <h4>Data will be updated each 15 second</h4>
+            <table>
+                <tr>
+                    <th>Sensor</th>
+                    <th>Value</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Water</td>
+                    <td>{{.Water}} m</td>
+                    <td class="{{.WaterLevel}}">{{.WaterLevel}}</td>
+                </tr>
+                <tr>
+                    <td>Wind</td>
+                    <td>{{.Wind}} m/s</td>
+                    <td class="{{.WindLevel}}">{{.WindLevel}}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <label id="TimeElapsed"></label>
+        </div>
+    </body>
+    <style>
+        .Bahaya{ background: rgb(155, 0, 0); }
+        .Siaga{ background: rgb(255, 255, 132); }
+        .Aman{ background: rgb(96, 255, 96); }
+    </style>
+</html>
