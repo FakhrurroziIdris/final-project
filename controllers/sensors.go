@@ -1,54 +1,69 @@
 package controllers
 
 import (
-	"final-project/configs"
-	"final-project/services"
-	"net/http"
-
+	"final-project/constants"
 	"final-project/models"
+	"final-project/services"
+	"final-project/utils"
+	"net/http"
+	"reflect"
 
 	"github.com/gin-gonic/gin"
 )
 
-type sensorController struct {
-	sensorService services.IService
+type userController struct {
+	userService services.IService
 }
 
-func NewSensorController(service services.Sensor) *sensorController {
-	return &sensorController{sensorService: &service}
+func UserController(service services.IService) *userController {
+	return &userController{userService: service}
 }
 
-func (cont *sensorController) Get(ctx *gin.Context) {
-	var fileData = cont.sensorService.Get()
+func (cont *userController) Get(ctx *gin.Context) {
+	response, err := cont.userService.Get()
 
-	var data = models.Status{
-		Water: fileData.Water,
-		Wind:  fileData.Wind,
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusNotFound, gin.H{
+			"message": err.Error(),
+		})
+		return
 	}
 
-	switch {
-	case data.Water <= 5:
-		data.WaterLevel = "Aman"
-	case data.Water >= 6 && data.Water <= 8:
-		data.WaterLevel = "Siaga"
-	case data.Water > 8:
-		data.WaterLevel = "Bahaya"
+	ctx.JSON(http.StatusOK, response)
+}
+
+func (cont *userController) Create(ctx *gin.Context) {
+	payload := models.User{}
+	contentType := utils.GetContentType(ctx)
+
+	if contentType == constants.AppJSON {
+		if err := ctx.ShouldBindJSON(&payload); err != nil {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+	} else {
+		if err := ctx.ShouldBind(&payload); err != nil {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+	}
+	created, err := cont.userService.Create(payload)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
 	}
 
-	switch {
-	case data.Wind <= 6:
-		data.WindLevel = "Aman"
-	case data.Wind >= 7 && data.Wind <= 15:
-		data.WindLevel = "Siaga"
-	case data.Wind > 15:
-		data.WindLevel = "Bahaya"
-	}
-
-	ctx.HTML(http.StatusOK, "template.html", gin.H{
-		"Water":       data.Water,
-		"WaterLevel":  data.WaterLevel,
-		"Wind":        data.Wind,
-		"WindLevel":   data.WindLevel,
-		"PageRefresh": configs.GetEnv().WebPresentation.PageRefresh,
+	user := reflect.ValueOf(created).Interface().(models.User)
+	ctx.JSON(http.StatusCreated, gin.H{
+		"age":      user.Age,
+		"email":    user.Email,
+		"id":       user.ID,
+		"username": user.UserName,
 	})
 }

@@ -1,10 +1,8 @@
 package repositories
 
-import "final-project/models"
-
 type IRepository interface {
-	UpdateSensor()
-	Get() models.SensorData
+	Get() (interface{}, error)
+	Create(interface{}) (interface{}, error)
 }
 
 type IDB interface {

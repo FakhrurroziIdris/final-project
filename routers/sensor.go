@@ -19,12 +19,14 @@ func authentication() gin.HandlerFunc {
 	})
 }
 
-func SensorRoute(route *gin.Engine) {
-	order := route.Group("/sensor")
+func UsersRoute(route *gin.Engine) {
+	order := route.Group("/users")
 
-	db := helpers.JsonDB(configs.GetEnv().Database.JsonFile)
-	repo := repositories.SensorRepository(db)
-	service := services.SensorService(repo)
-	sensorController := controllers.NewSensorController(*service)
-	order.GET("", sensorController.Get)
+	db := helpers.PgSqlDB(configs.GetEnv().Database)
+	repo := repositories.UserRepository(db)
+	service := services.UserService(repo)
+	controller := controllers.UserController(service)
+
+	order.GET("", controller.Get)
+	order.POST("/register", controller.Create)
 }

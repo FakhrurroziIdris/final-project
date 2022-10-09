@@ -1,8 +1,6 @@
 package services
 
-import "final-project/models"
-
 type IService interface {
-	Get() models.SensorData
-	UpdateSensor()
+	Get() (interface{}, error)
+	Create(interface{}) (interface{}, error)
 }

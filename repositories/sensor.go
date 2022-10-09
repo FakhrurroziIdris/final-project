@@ -1,22 +1,39 @@
 package repositories
 
 import (
-	"final-project/helpers"
 	"final-project/models"
+	"reflect"
+
+	"gorm.io/gorm"
 )
 
-type Sensor struct {
-	db helpers.IDB
+type user struct {
+	db *gorm.DB
 }
 
-func SensorRepository(db helpers.IDB) *Sensor {
-	return &Sensor{db: db}
+func UserRepository(db *gorm.DB) *user {
+	return &user{db: db}
 }
 
-func (repo *Sensor) UpdateSensor() {
-	repo.db.Update()
+func (repo *user) UpdateSensor() {
+	// repo.db.Update()
 }
 
-func (repo *Sensor) Get() models.SensorData {
-	return repo.db.Get()
+func (repo *user) Get() (interface{}, error) {
+	response := []models.User{}
+	err := repo.db.Find(&response).Error
+	return response, err
+}
+
+func (repo *user) Create(payload interface{}) (interface{}, error) {
+	tx := repo.db.Begin()
+	user := reflect.ValueOf(payload).Interface().(models.User)
+
+	err := tx.Create(&user).Error
+	if err != nil {
+		tx.Rollback()
+		return payload, err
+	}
+	tx.Commit()
+	return user, err
 }
