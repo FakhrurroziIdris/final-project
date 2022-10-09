@@ -1,6 +1,6 @@
 package repositories
 
-import "assignment-3/models"
+import "final-project/models"
 
 type IRepository interface {
 	UpdateSensor()

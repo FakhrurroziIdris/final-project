@@ -1,8 +1,8 @@
 package helpers
 
 import (
-	"assignment-3/models"
 	"encoding/json"
+	"final-project/models"
 	"fmt"
 	"io/ioutil"
 	"log"

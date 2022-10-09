@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"assignment-3/helpers"
-	"assignment-3/models"
+	"final-project/helpers"
+	"final-project/models"
 )
 
 type Sensor struct {

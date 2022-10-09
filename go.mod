@@ -1,4 +1,4 @@
-module assignment-3
+module final-project
 
 go 1.18
 

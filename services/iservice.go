@@ -1,6 +1,6 @@
 package services
 
-import "assignment-3/models"
+import "final-project/models"
 
 type IService interface {
 	Get() models.SensorData

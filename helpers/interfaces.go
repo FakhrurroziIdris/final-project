@@ -1,6 +1,6 @@
 package helpers
 
-import "assignment-3/models"
+import "final-project/models"
 
 type IDB interface {
 	Update()

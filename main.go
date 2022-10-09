@@ -1,11 +1,11 @@
 package main
 
 import (
-	"assignment-3/configs"
-	"assignment-3/helpers"
-	"assignment-3/repositories"
-	"assignment-3/routers"
-	"assignment-3/services"
+	"final-project/configs"
+	"final-project/helpers"
+	"final-project/repositories"
+	"final-project/routers"
+	"final-project/services"
 
 	"github.com/gin-gonic/gin"
 	"github.com/robfig/cron"

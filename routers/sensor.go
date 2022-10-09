@@ -1,11 +1,11 @@
 package routers
 
 import (
-	"assignment-3/configs"
-	"assignment-3/controllers"
-	"assignment-3/helpers"
-	"assignment-3/repositories"
-	"assignment-3/services"
+	"final-project/configs"
+	"final-project/controllers"
+	"final-project/helpers"
+	"final-project/repositories"
+	"final-project/services"
 
 	"github.com/gin-gonic/gin"
 )

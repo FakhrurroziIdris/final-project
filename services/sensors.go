@@ -1,8 +1,8 @@
 package services
 
 import (
-	"assignment-3/models"
-	"assignment-3/repositories"
+	"final-project/models"
+	"final-project/repositories"
 )
 
 type Sensor struct {

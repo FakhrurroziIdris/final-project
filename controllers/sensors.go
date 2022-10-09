@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"assignment-3/configs"
-	"assignment-3/services"
+	"final-project/configs"
+	"final-project/services"
 	"net/http"
 
-	"assignment-3/models"
+	"final-project/models"
 
 	"github.com/gin-gonic/gin"
 )
