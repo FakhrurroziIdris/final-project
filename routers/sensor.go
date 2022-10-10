@@ -29,4 +29,5 @@ func UsersRoute(route *gin.Engine) {
 
 	order.GET("", controller.Get)
 	order.POST("/register", controller.Create)
+	order.POST("/login", controller.Login)
 }

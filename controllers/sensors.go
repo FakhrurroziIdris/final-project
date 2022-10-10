@@ -67,3 +67,52 @@ func (cont *userController) Create(ctx *gin.Context) {
 		"username": user.UserName,
 	})
 }
+
+func (cont *userController) Login(ctx *gin.Context) {
+	payload := models.User{}
+	contentType := utils.GetContentType(ctx)
+	password := ""
+
+	if contentType == constants.AppJSON {
+		if err := ctx.ShouldBindJSON(&payload); err != nil {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+	} else {
+		if err := ctx.ShouldBind(&payload); err != nil {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+	}
+
+	password = payload.Password
+	data, err := cont.userService.GetOne(payload)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+			"error":   "Unauthorized",
+			"message": "invalid email/password",
+		})
+		return
+	}
+
+	user := reflect.ValueOf(data).Interface().(models.User)
+	comparePass := utils.ComparePass([]byte(user.Password), []byte(password))
+
+	if !comparePass {
+		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+			"error":   "Unauthorized",
+			"message": "invalid email/password",
+		})
+		return
+	}
+
+	token := utils.GenerateToken(payload.ID, payload.Email)
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"token": token,
+	})
+}

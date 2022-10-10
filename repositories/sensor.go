@@ -37,3 +37,10 @@ func (repo *user) Create(payload interface{}) (interface{}, error) {
 	tx.Commit()
 	return user, err
 }
+
+func (repo *user) GetOne(payload interface{}) (interface{}, error) {
+	response := reflect.ValueOf(payload).Interface().(models.User)
+
+	err := repo.db.First(&response).Error
+	return response, err
+}

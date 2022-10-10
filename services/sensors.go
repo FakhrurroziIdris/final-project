@@ -27,3 +27,9 @@ func (service *User) Create(payload interface{}) (interface{}, error) {
 
 	return user, err
 }
+
+func (service *User) GetOne(payload interface{}) (interface{}, error) {
+	data, err := service.repo.GetOne(payload)
+
+	return data, err
+}
