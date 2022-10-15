@@ -8,11 +8,32 @@ import (
 	"net/http"
 	"reflect"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
 type userController struct {
 	userService services.IService
+}
+
+func bindPayload(ctx *gin.Context) (payload models.User, err error) {
+	contentType := utils.GetContentType(ctx)
+
+	if contentType == constants.AppJSON {
+		if err = ctx.ShouldBindJSON(&payload); err != nil {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+		}
+	} else {
+		if err = ctx.ShouldBind(&payload); err != nil {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+		}
+	}
+
+	return payload, err
 }
 
 func UserController(service services.IService) *userController {
@@ -110,9 +131,54 @@ func (cont *userController) Login(ctx *gin.Context) {
 		return
 	}
 
-	token := utils.GenerateToken(payload.ID, payload.Email)
+	token := utils.GenerateToken(user.ID, user.Email)
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"token": token,
+	})
+}
+
+func (cont *userController) Update(ctx *gin.Context) {
+	payload, err := bindPayload(ctx)
+	if err != nil {
+		return
+	}
+
+	data, err := cont.userService.Update(payload)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	user := reflect.ValueOf(data).Interface().(models.User)
+	ctx.JSON(http.StatusOK, gin.H{
+		"id":         user.ID,
+		"email":      user.Email,
+		"username":   user.UserName,
+		"age":        user.Age,
+		"updated_at": user.UpdatedAt,
+	})
+}
+
+func (cont *userController) Delete(ctx *gin.Context) {
+	payload := ctx.MustGet("userData").(jwt.MapClaims)
+	// mapClaims := reflect.ValueOf(payload).Interface().(jwt.MapClaims)
+	user := models.User{
+		Email: payload["email"].(string),
+		GormModel: models.GormModel{
+			ID: uint(payload["id"].(float64)),
+		},
+	}
+
+	_, err := cont.userService.Delete(user)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "Your account has been successfully deleted",
 	})
 }

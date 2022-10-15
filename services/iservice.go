@@ -5,4 +5,6 @@ type IService interface {
 	Create(interface{}) (interface{}, error)
 	// Login(interface{}) (interface{}, error)
 	GetOne(interface{}) (interface{}, error)
+	Update(interface{}) (interface{}, error)
+	Delete(interface{}) (interface{}, error)
 }

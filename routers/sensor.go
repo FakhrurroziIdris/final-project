@@ -27,7 +27,9 @@ func UsersRoute(route *gin.Engine) {
 	service := services.UserService(repo)
 	controller := controllers.UserController(service)
 
-	order.GET("", controller.Get)
+	// order.GET("", utils.Authentication(), controller.Get)
 	order.POST("/register", controller.Create)
 	order.POST("/login", controller.Login)
+	order.PUT("", controllers.Authentication(service), controller.Update)
+	order.DELETE("", controllers.Authentication(service), controller.Delete)
 }

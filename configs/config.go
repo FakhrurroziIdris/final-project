@@ -28,6 +28,8 @@ func Load() {
 	config.Database.Password = os.Getenv("PGSQL_PASSWORD")
 	config.Database.Port = os.Getenv("PGSQL_PORT")
 	config.Database.User = os.Getenv("PGSQL_USER")
+
+	config.Authentication.ExpiresInMinute, _ = strconv.Atoi(os.Getenv("JWT_LIFE"))
 }
 
 func GetEnv() Config {

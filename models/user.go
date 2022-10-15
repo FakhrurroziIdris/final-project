@@ -18,13 +18,6 @@ type User struct {
 }
 
 func (payload *User) BeforeCreate(tx *gorm.DB) error {
-	// _, errCreate := govalidator.ValidateStruct(u)
-
-	// if errCreate != nil {
-	// 	err = errCreate
-	// 	return
-	// }
-
 	_, err := mail.ParseAddress(payload.Email)
 	if err != nil {
 		return errors.New("Format email salah")

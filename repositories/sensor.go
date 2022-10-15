@@ -41,6 +41,20 @@ func (repo *user) Create(payload interface{}) (interface{}, error) {
 func (repo *user) GetOne(payload interface{}) (interface{}, error) {
 	response := reflect.ValueOf(payload).Interface().(models.User)
 
-	err := repo.db.First(&response).Error
+	err := repo.db.Where("email = ?", response.Email).Take(&response).Error
 	return response, err
+}
+
+func (repo *user) Update(payload interface{}) (interface{}, error) {
+	user := reflect.ValueOf(payload).Interface().(models.User)
+
+	err := repo.db.Model(&user).Where("email=?", user.Email).Updates(user).Take(&user).Error
+	return user, err
+}
+
+func (repo *user) Delete(payload interface{}) (interface{}, error) {
+	user := reflect.ValueOf(payload).Interface().(models.User)
+
+	err := repo.db.Model(&user).Where("email=?", user.Email).Delete(user).Error
+	return user, err
 }

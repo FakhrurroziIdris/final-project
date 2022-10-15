@@ -5,6 +5,7 @@ type Config struct {
 	Database        Database
 	CRON            CRON
 	WebPresentation WebPresentation
+	Authentication  Authentication
 }
 
 type Server struct {
@@ -27,4 +28,8 @@ type CRON struct {
 type WebPresentation struct {
 	TemplateFolder string
 	PageRefresh    int
+}
+
+type Authentication struct {
+	ExpiresInMinute int
 }
