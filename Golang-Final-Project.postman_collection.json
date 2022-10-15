@@ -1,0 +1,677 @@
+{
+	"info": {
+		"_postman_id": "fc8a0d15-3c90-412c-b775-d9090d7f5341",
+		"name": "Golang-Final-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9371689"
+	},
+	"item": [
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "asdasd@asdasd1.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passwordasdasd",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "bbbbb",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "asdasd@asdasd1.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passwordasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQxMTc2LCJpZCI6MjR9.-c2aal9iuD9_AUe4m_Wf1akHdTQh7pIIrfTdz-bVcOU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "asdasd@asdasd.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "update username",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODUzNDI4LCJpZCI6Mjh9.Q6OPXyfy7sJycn2dusNBllwofZrCzedEuU_7AOjkxqs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Photos Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QxLmNvbSIsImV4cCI6MTY2NTg1MzQ2OSwiaWQiOjMwfQ.VprLSjKXq6uXKYtSHy2bPrs9qvvaWzuOxvOwCD-NunY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "photo 1",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "caption photo 1",
+							"type": "text"
+						},
+						{
+							"key": "photo_url",
+							"value": "photo url 1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/photos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Photos Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QxLmNvbSIsImV4cCI6MTY2NTg1MzQ2OSwiaWQiOjMwfQ.VprLSjKXq6uXKYtSHy2bPrs9qvvaWzuOxvOwCD-NunY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/photos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Photos Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QxLmNvbSIsImV4cCI6MTY2NTg1MzQ2OSwiaWQiOjMwfQ.VprLSjKXq6uXKYtSHy2bPrs9qvvaWzuOxvOwCD-NunY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "photo title update",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "photo title update",
+							"type": "text"
+						},
+						{
+							"key": "photo_url",
+							"value": "photo url update",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/photos/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"photos",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Photos Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQyNzc4LCJpZCI6Mjd9.8a-scGEgixX6ePIo_JsUFr4JIK0a6WSaWmMCgF4wHLs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "photo title update",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "photo title update",
+							"type": "text"
+						},
+						{
+							"key": "photo_url",
+							"value": "photo url update",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/photos/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"photos",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comments Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQ4NTExLCJpZCI6Mjh9.nG5X4gfJZ1821YGTDFl5eeSpT9YFqGMPQi0VV1-2FE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "message",
+							"value": "comments 1",
+							"type": "text"
+						},
+						{
+							"key": "photo_id",
+							"value": "14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comments Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQ4NTExLCJpZCI6Mjh9.nG5X4gfJZ1821YGTDFl5eeSpT9YFqGMPQi0VV1-2FE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comments Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQ4NTExLCJpZCI6Mjh9.nG5X4gfJZ1821YGTDFl5eeSpT9YFqGMPQi0VV1-2FE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "message",
+							"value": "comments updated",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/comments/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comments",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comments Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQ4NTExLCJpZCI6Mjh9.nG5X4gfJZ1821YGTDFl5eeSpT9YFqGMPQi0VV1-2FE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/comments/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comments",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Social Media Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODUxMDc0LCJpZCI6Mjh9.ZhuIkFRG1zgbjpKL12IQDZwRFtkqlBMij-O3jtuRRYw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "social media 1",
+							"type": "text"
+						},
+						{
+							"key": "social_media_url",
+							"value": "social media url 1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/socialmedias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"socialmedias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Social Media Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODUxMDc0LCJpZCI6Mjh9.ZhuIkFRG1zgbjpKL12IQDZwRFtkqlBMij-O3jtuRRYw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/socialmedias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"socialmedias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Social Media Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODUxMDc0LCJpZCI6Mjh9.ZhuIkFRG1zgbjpKL12IQDZwRFtkqlBMij-O3jtuRRYw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "social media name update",
+							"type": "text"
+						},
+						{
+							"key": "social_media_url",
+							"value": "social media url update",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/socialmedias/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"socialmedias",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Social Media Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGFzZEBhc2Rhc2QuY29tIiwiZXhwIjoxNjY1ODQyNzc4LCJpZCI6Mjd9.8a-scGEgixX6ePIo_JsUFr4JIK0a6WSaWmMCgF4wHLs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "photo title update",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "photo title update",
+							"type": "text"
+						},
+						{
+							"key": "photo_url",
+							"value": "photo url update",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/photos/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"photos",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
