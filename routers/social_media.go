@@ -10,18 +10,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func PhotosRoute(route *gin.Engine) {
-	order := route.Group("/photos")
+func SocialMediasRoute(route *gin.Engine) {
+	order := route.Group("/socialmedias")
 
 	db := helpers.PgSqlDB(configs.GetEnv().Database)
 	userRepo := repositories.UserRepository(db)
 	userService := services.UserService(userRepo)
-	repo := repositories.PhotoRepository(db)
-	service := services.PhotoService(repo)
-	controller := controllers.PhotoController(service)
+
+	repo := repositories.SocialMediaRepository(db)
+	service := services.SocialMediaService(repo)
+	controller := controllers.SocialMediaController(service)
 
 	order.POST("", controllers.Authentication(userService), controller.Create)
 	order.GET("", controllers.Authentication(userService), controller.Get)
-	order.PUT("/:photoId", controllers.Authentication(userService), controller.Update)
-	order.DELETE("/:photoId", controllers.Authentication(userService), controller.Delete)
+	order.PUT("/:socialMediaId", controllers.Authentication(userService), controller.Update)
+	order.DELETE("/:socialMediaId", controllers.Authentication(userService), controller.Delete)
 }

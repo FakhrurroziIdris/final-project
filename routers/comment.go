@@ -25,6 +25,4 @@ func CommentsRoute(route *gin.Engine) {
 	order.GET("", controllers.Authentication(userService), controller.Get)
 	order.PUT("/:commentId", controllers.Authentication(userService), controller.Update)
 	order.DELETE("/:commentId", controllers.Authentication(userService), controller.Delete)
-	// order.PUT("", controllers.Authentication(userService), controller.Update)
-	// order.DELETE("", controllers.Authentication(userService), controller.Delete)
 }

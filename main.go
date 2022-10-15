@@ -14,5 +14,6 @@ func main() {
 	routers.UsersRoute(router)
 	routers.PhotosRoute(router)
 	routers.CommentsRoute(router)
+	routers.SocialMediasRoute(router)
 	router.Run(configs.GetEnv().WebServer.Port)
 }
