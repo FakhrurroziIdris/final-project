@@ -16,7 +16,7 @@ type userController struct {
 	userService services.IService
 }
 
-func bindPayload(ctx *gin.Context) (payload models.User, err error) {
+func bindPayloadUser(ctx *gin.Context) (payload models.User, err error) {
 	contentType := utils.GetContentType(ctx)
 
 	if contentType == constants.AppJSON {
@@ -41,7 +41,8 @@ func UserController(service services.IService) *userController {
 }
 
 func (cont *userController) Get(ctx *gin.Context) {
-	response, err := cont.userService.Get()
+	payload := models.User{}
+	response, err := cont.userService.Get(payload)
 
 	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusNotFound, gin.H{
@@ -139,7 +140,7 @@ func (cont *userController) Login(ctx *gin.Context) {
 }
 
 func (cont *userController) Update(ctx *gin.Context) {
-	payload, err := bindPayload(ctx)
+	payload, err := bindPayloadUser(ctx)
 	if err != nil {
 		return
 	}
@@ -163,7 +164,6 @@ func (cont *userController) Update(ctx *gin.Context) {
 
 func (cont *userController) Delete(ctx *gin.Context) {
 	payload := ctx.MustGet("userData").(jwt.MapClaims)
-	// mapClaims := reflect.ValueOf(payload).Interface().(jwt.MapClaims)
 	user := models.User{
 		Email: payload["email"].(string),
 		GormModel: models.GormModel{

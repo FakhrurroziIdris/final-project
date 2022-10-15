@@ -1,7 +1,7 @@
 package repositories
 
 type IRepository interface {
-	Get() (interface{}, error)
+	Get(interface{}) (interface{}, error)
 	Create(interface{}) (interface{}, error)
 	GetOne(interface{}) (interface{}, error)
 	Update(interface{}) (interface{}, error)

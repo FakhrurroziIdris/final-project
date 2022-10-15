@@ -19,7 +19,7 @@ func (repo *user) UpdateSensor() {
 	// repo.db.Update()
 }
 
-func (repo *user) Get() (interface{}, error) {
+func (repo *user) Get(payload interface{}) (interface{}, error) {
 	response := []models.User{}
 	err := repo.db.Find(&response).Error
 	return response, err

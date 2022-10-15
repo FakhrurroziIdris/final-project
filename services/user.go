@@ -16,8 +16,8 @@ func (service *User) UpdateUser() {
 	// service.repo.UpdateUser()
 }
 
-func (service *User) Get() (interface{}, error) {
-	data, err := service.repo.Get()
+func (service *User) Get(payload interface{}) (interface{}, error) {
+	data, err := service.repo.Get(payload)
 	return data, err
 }
 

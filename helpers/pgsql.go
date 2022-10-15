@@ -38,6 +38,6 @@ func PgSqlDB(envConfig configs.Database) *gorm.DB {
 		}
 	}
 
-	DB.Debug().AutoMigrate(&models.User{})
+	DB.Debug().AutoMigrate(&models.Photo{}, &models.User{})
 	return DB
 }

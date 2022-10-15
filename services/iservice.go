@@ -1,7 +1,7 @@
 package services
 
 type IService interface {
-	Get() (interface{}, error)
+	Get(interface{}) (interface{}, error)
 	Create(interface{}) (interface{}, error)
 	// Login(interface{}) (interface{}, error)
 	GetOne(interface{}) (interface{}, error)

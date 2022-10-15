@@ -15,6 +15,7 @@ type User struct {
 	Email    string `gorm:"not null;uniqueIndex" json:"email" form:"email"`
 	Password string `gorm:"not null" json:"password" form:"password"`
 	Age      int    `gorm:"not null" json:"age" form:"age"`
+	Photos   []Photo
 }
 
 func (payload *User) BeforeCreate(tx *gorm.DB) error {
