@@ -13,5 +13,6 @@ func main() {
 	router := gin.Default()
 	routers.UsersRoute(router)
 	routers.PhotosRoute(router)
+	routers.CommentsRoute(router)
 	router.Run(configs.GetEnv().WebServer.Port)
 }

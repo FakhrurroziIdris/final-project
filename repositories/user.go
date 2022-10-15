@@ -54,7 +54,28 @@ func (repo *user) Update(payload interface{}) (interface{}, error) {
 
 func (repo *user) Delete(payload interface{}) (interface{}, error) {
 	user := reflect.ValueOf(payload).Interface().(models.User)
+	comment := models.Comment{}
+	photo := models.Photo{}
 
-	err := repo.db.Model(&user).Where("email=?", user.Email).Delete(user).Error
-	return user, err
+	tx := repo.db.Begin()
+	errComment := repo.db.Model(&comment).Where("user_id = ?", user.ID).Delete(&comment).Error
+	if errComment != nil {
+		tx.Rollback()
+		return payload, errComment
+	}
+
+	errPhoto := repo.db.Model(&photo).Where("user_id=?", user.ID).Delete(photo).Error
+	if errPhoto != nil {
+		tx.Rollback()
+		return payload, errPhoto
+	}
+
+	errUser := repo.db.Model(&user).Where("email=?", user.Email).Delete(user).Error
+	if errUser != nil {
+		tx.Rollback()
+		return payload, errUser
+	}
+
+	tx.Commit()
+	return user, nil
 }
